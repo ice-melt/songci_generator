@@ -25,7 +25,7 @@
 
 - `CBOW` 输入关联的词去预测词。
 
-# 2、`Word_Embedding.py`代码理解
+## 2、`Word_Embedding.py`代码理解
 
 本次作业进行`Word Embedding`使用的代码为`Word_Embedding.py`
 
@@ -54,7 +54,7 @@
     - 可以把多分类问题转化成二分类，大大提高计算速度；
     - 将所有单词分为两类，正例和负例，`word2vec`中只需给出上下文和相关的正例，`tf.nn.nce_loss()`中会自动生成负例。
 
-(5)   训练模型
+#### (5)   训练模型
 
 迭代步数取150001
 
@@ -62,20 +62,20 @@
 
 通过`np.save('embedding.npy', final_embeddings)`保存最终生成的`embeddings`。
 
-(6)   可视化学到的字词嵌入
+#### (6)   可视化学到的字词嵌入
 
 使用 `t-SNE` 降维技术将字词嵌入投射到二维空间；
 
 通过设置`plt.rcParams['font.sans-serif'] = ['SimHei']`，使`matplotlib`绘制的图能够正常显示中文。
 
-# 3、字词嵌入图
+## 3、字词嵌入图
 
 ![PIC000][PIC000]
 
 如图所示，可以看出图片中意义接近的词，如数字等（图中左下角），距离比较近（一这个数字是个特例，离其他数字比较远）。
 
  
-# 4、RNN理解
+## 4、RNN理解
 
 `RNN`即`Recurrent Neural Network`，是循环神经网络，具有短期记忆能力，适用于文本和视频相关应用。
 
@@ -86,7 +86,7 @@ RNN网络模型结构如下图所示
 
 ​       本次作业使用的是RNN中的LSTM模型，如下图所示
 ![LSTM模型](https://img-blog.csdnimg.cn/20190318164757754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9pY2UtbWVsdC5ibG9nLmNzZG4ubmV0,size_16,color_FFFFFF,t_70)
-# 5、RNN代码
+## 5、RNN代码
 
 代码主要修改`model.py`、`train.py`和`utils.py`.
 
@@ -177,7 +177,7 @@ def get_train_data(vocabulary_int, batch_size, num_steps):
 
 ```
 
-# 6、RNN模型训练心得
+## 6、RNN模型训练心得
 RNN的网络单元和其他的神经网络基本相同都是由隐层，输入和输出层组成，但是RNN有在时间维度堆叠，使其可以将数据前后的相关性在网络结构中学习出来，即具有记忆功能
 
 word embeding是将一堆词组成的词汇表中的单词或短语映射成实数构成的向量上。这样的好处是通过简单的余弦函数，就可以计算两个单词之间的相关性
@@ -190,14 +190,25 @@ RNN训练过程中每个batch会喂多个time_step的数据,最基础的RNN网�
 ![PIC002][PIC002]
 
 > 输出的结果有点诗的感觉 但是和真正的诗词又有很大区别，输出明显能看出网络能够得到上下文相关的信息，但是还需要进一步提升性能
-#### 7、链接
+## 7、链接汇总
+> 孙老师作业仓库
 
-gitee: [https://gitee.com/ice-melt/eleventh_weeks_homework](https://gitee.com/ice-melt/eleventh_weeks_homework)
-github: [https://github.com/ice-melt-CSDN/csdn-w11]( [csdn-w11](https://github.com/ice-melt-CSDN/csdn-w11))
-tinymind: [https://www.tinymind.com/executions/8a50l7dz](https://www.tinymind.com/executions/8a50l7dz)
+[https://gitee.com/ai100/quiz-w10-code](https://gitee.com/ai100/quiz-w10-code)
+
+> 我的gitee作业仓库   
+
+[https://gitee.com/ice-melt/eleventh_weeks_homework](https://gitee.com/ice-melt/eleventh_weeks_homework)
+
+> 我的github作业仓库
+
+[https://github.com/ice-melt-CSDN/csdn-w11]( [csdn-w11](https://github.com/ice-melt-CSDN/csdn-w11))
+
+> 我的项目运行结果地址
+
+[https://www.tinymind.com/executions/8a50l7dz](https://www.tinymind.com/executions/8a50l7dz)
   
 ------
- 
+
 [PIC000]: https://raw.github.com/ice-melt/picture-set/master/csdn_week11_homework-pic/tsne.png
 [PIC001]: https://raw.github.com/ice-melt/picture-set/master/csdn_week11_homework-pic/dataset.png
 [PIC002]: https://raw.github.com/ice-melt/picture-set/master/csdn_week11_homework-pic/runLog.png
