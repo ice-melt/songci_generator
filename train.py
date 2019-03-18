@@ -52,32 +52,26 @@ with tf.Session() as sess:
 
 
     max_steps = ( len(vocabulary_int)//(FLAGS.batch_size*FLAGS.num_steps) )  # 以num_steps为基本单位计算
-    step=0
+    step = 0
     for epoc in range(1):
-        #logging.debug('epoch [{0}]....'.format(epoc))
+        # logging.debug('epoch [{0}]....'.format(epoc))
         state = sess.run(model.state_tensor)   # RNN的起始状态
         for x, y in utils.get_train_data(vocabulary_int, batch_size=FLAGS.batch_size, num_steps=FLAGS.num_steps):
-
-            ##################
-            # Your Code here
-            ##################
             step += 1
-            feed_dict = {model.X: x,
-                    model.Y: y,
-                    model.keep_prob: 0.85,
-                    model.state_tensor: state}
+            feed_dict = {model.X: x, model.Y: y, model.keep_prob: 0.85, model.state_tensor: state}
 
             gs, _, state, l, summary_string = sess.run(
-                [model.global_step, model.optimizer, model.outputs_state_tensor, model.loss, model.merged_summary_op], feed_dict=feed_dict)
+                [model.global_step, model.optimizer, model.outputs_state_tensor,
+                 model.loss, model.merged_summary_op], feed_dict=feed_dict)
             summary_string_writer.add_summary(summary_string, gs)
 
-            if gs % (max_steps //10) == 0:
+            if gs % (max_steps // 10) == 0:
                 logging.debug('step [{0}] loss [{1}]'.format(gs, l))
 
-            if gs % (max_steps //4)== 0:
+            if gs % (max_steps // 4) == 0:
                 save_path = saver.save(sess, os.path.join(FLAGS.output_dir, "model.ckpt"), global_step=gs)
 
-            if step>=max_steps:
+            if step >= max_steps:
                 break
 
     summary_string_writer.close()
