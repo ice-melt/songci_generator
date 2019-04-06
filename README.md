@@ -27,7 +27,9 @@
 
 ## 2、`Word_Embedding.py`代码理解
 
-本次作业进行`Word Embedding`使用的代码为`Word_Embedding.py`
+本次作业进行`Word Embedding`使用的代码为`word2vec.py`
+
+> 代码参考 https://github.com/tensorflow/tensorflow/blob/r1.4/tensorflow/examples/tutorials/word2vec/word2vec_basic.py
 
 `Word_Embedding`的代码主要分为6步：
 
